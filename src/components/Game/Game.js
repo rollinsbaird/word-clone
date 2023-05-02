@@ -21,7 +21,6 @@ function Game() {
     <>
       <GuessResults guesses={guesses} />
       <GuessInput onGuess={onGuess} />
-      {/* <GuessInput guesses={guesses} setGuesses={setGuesses} /> */}
     </>
   );
 }
