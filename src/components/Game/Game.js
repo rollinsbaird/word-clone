@@ -13,14 +13,26 @@ console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
+  const [status, setStatus] = React.useState("running");
 
   function onGuess(guess) {
     setGuesses([...guesses, guess]);
   }
+
   return (
     <>
-      <GuessResults guesses={guesses} answer={answer} />
-      <GuessInput onGuess={onGuess} />
+      <GuessResults
+        guesses={guesses}
+        answer={answer}
+        numGuesses={guesses.length}
+        setStatus={setStatus}
+      />
+      <GuessInput
+        onGuess={onGuess}
+        status={status}
+        numGuesses={guesses.length}
+        answer={answer}
+      />
     </>
   );
 }

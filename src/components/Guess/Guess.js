@@ -8,8 +8,25 @@ function Cell({ letter, status }) {
   return <span className={className}>{letter}</span>;
 }
 
-function Guess({ guess, answer }) {
+function Guess({ guess, answer, setStatus, guessesLeft }) {
   const guessStatus = checkGuess(guess, answer);
+  let correctLetters = 0;
+
+  if (guess) {
+    for (let i = 0; i < 5; i++) {
+      if (guessStatus[i].status === "correct") {
+        correctLetters++;
+      } else break;
+    }
+  }
+
+  if (correctLetters === 5) {
+    setStatus("won");
+  }
+
+  if (guessesLeft === 0 && correctLetters < 5) {
+    setStatus("lost");
+  }
 
   return (
     <p className="guess">

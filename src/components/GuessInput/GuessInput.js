@@ -1,9 +1,10 @@
 import React from "react";
+import GameOverBanner from "../GameOverBanner/GameOverBanner";
 
-function GuessInput({ onGuess }) {
+function GuessInput({ onGuess, status, numGuesses, answer }) {
   const [guess, setGuess] = React.useState("");
 
-  return (
+  return status === "running" ? (
     <>
       <form
         className="guess-input-wrapper"
@@ -28,6 +29,8 @@ function GuessInput({ onGuess }) {
         />
       </form>
     </>
+  ) : (
+    <GameOverBanner status={status} numGuesses={numGuesses} answer={answer} />
   );
 }
 
